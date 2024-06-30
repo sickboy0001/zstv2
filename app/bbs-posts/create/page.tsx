@@ -1,4 +1,6 @@
 "use client";
+
+import { postBBS } from "@/app/actions/postBBSAction";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -10,23 +12,24 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Textarea } from "@/components/ui/textarea";
-import { useRouter } from "next/navigation";
-import { postBBS } from "@/app/actions/postBBSAction";
 
 export const formSchema = z.object({
   username: z
     .string()
-    .min(2, { message: "ユーザー名は２文字以上でお願いします。" }),
-  title: z.string().min(2, { message: "タイトルは２文字以上でお願いします。" }),
+    .min(2, { message: "ユーザー名は2文字以上で入力してください。" }),
+  title: z
+    .string()
+    .min(2, { message: "タイトルは2文字以上で入力してください。" }),
   content: z
     .string()
-    .min(10, { message: "本文は１０文字以上でお願いします。" })
-    .max(140, { message: "本文は140文字以内でお願いします。" }),
+    .min(10, { message: "本文は10文字以上で入力してください。" })
+    .max(140, { message: "本文は140文字以内で入力してください。" }),
 });
 
 const CreateBBSPage = () => {
@@ -34,7 +37,6 @@ const CreateBBSPage = () => {
 
   const form = useForm({
     resolver: zodResolver(formSchema),
-
     defaultValues: {
       username: "",
       title: "",
@@ -45,19 +47,6 @@ const CreateBBSPage = () => {
   async function onSubmit(value: z.infer<typeof formSchema>) {
     const { username, title, content } = value;
     postBBS({ username, title, content });
-    // try {
-    //   await fetch("http://localhost:3000/api/post", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ username, title, content }),
-    //   });
-    //   router.push("/");
-    //   router.refresh();
-    // } catch (err) {
-    //   console.error(err);
-    // }
   }
 
   return (
@@ -119,5 +108,5 @@ const CreateBBSPage = () => {
     </div>
   );
 };
-
+// react-hook-form と zod
 export default CreateBBSPage;
