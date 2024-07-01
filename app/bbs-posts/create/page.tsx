@@ -27,7 +27,6 @@ export const formSchema = z.object({
     message: "タイトルは2文字以上で入力してください。",
   }),
   content: z
-    // this build error  Check that the entry is a valid entry
     .string()
     .min(10, {
       message: "本文は10文字以上で入力してください。",

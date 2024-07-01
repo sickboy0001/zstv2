@@ -1,7 +1,9 @@
 import BbsCardList from "@/components/bbsCardList";
 
-import prisma from "@/lib/prismaClient";
 import { BBSData } from "./types/types";
+import { format, formatDistanceToNow, subDays, subSeconds } from "date-fns";
+import { ja } from "date-fns/locale/ja";
+import { format as formatTz } from "date-fns-tz";
 
 async function getBBSAllData() {
   const response = await fetch("http://localhost:3000/api/post", {
@@ -14,9 +16,22 @@ async function getBBSAllData() {
 
 export default async function Home() {
   const bbsAllData = await getBBSAllData();
-
+  const date = new Date();
   return (
     <main>
+      <p>{format(date, "yyyy年MM月dd日 HH時mm分ss秒(E)", { locale: ja })}</p>
+      <p>
+        {formatTz(date, "yyyy年MM月dd日 HH時mm分ss秒(E)", {
+          timeZone: "Asia/Tokyo",
+          locale: ja,
+        })}
+      </p>
+      <p>
+        {formatDistanceToNow(subDays(date, 10), {
+          addSuffix: true,
+          locale: ja,
+        })}
+      </p>
       <BbsCardList bbsAllData={bbsAllData} />
     </main>
   );

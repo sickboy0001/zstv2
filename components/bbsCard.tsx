@@ -10,6 +10,9 @@ import {
 import Link from "next/link";
 import { BBSData } from "@/app/types/types";
 
+import { ja } from "date-fns/locale/ja";
+import { format as formatTz } from "date-fns-tz";
+
 interface BBSDataProps {
   bbsData: BBSData;
 }
@@ -22,7 +25,14 @@ const bbsCard = ({ bbsData }: BBSDataProps) => {
         <CardHeader>
           <CardTitle>{title}</CardTitle>
           <CardDescription>{username}</CardDescription>
-          <CardDescription>{String(createdAt)}</CardDescription>
+          <CardDescription>
+            <p>
+              {formatTz(createdAt, "yyyy年MM月dd日(E) HH時mm分ss秒", {
+                timeZone: "Asia/Tokyo",
+                locale: ja,
+              })}
+            </p>
+          </CardDescription>
         </CardHeader>
 
         <CardContent>{content}</CardContent>
