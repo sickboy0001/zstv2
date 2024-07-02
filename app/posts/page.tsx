@@ -1,6 +1,6 @@
 import BbsCardList from "@/components/bbsCardList";
 
-import { BBSData } from "./types/types";
+import { BBSData } from "@/app/types/types";
 import { format, formatDistanceToNow, subDays, subSeconds } from "date-fns";
 import { ja } from "date-fns/locale/ja";
 import { format as formatTz } from "date-fns-tz";
@@ -19,7 +19,7 @@ export default async function Home() {
   const date = new Date();
   return (
     <main>
-      <p>start</p>
+      <p>posts</p>
       <p>{format(date, "yyyy年MM月dd日 HH時mm分ss秒(E)", { locale: ja })}</p>
       <p>
         {formatTz(date, "yyyy年MM月dd日 HH時mm分ss秒(E)", {
