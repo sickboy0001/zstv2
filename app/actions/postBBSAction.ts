@@ -15,19 +15,7 @@ export const postBBS = async (username:string , title:string , content:string) =
             content:content
         }
     });
-    revalidatePath("/");
-    redirect("/")
+    revalidatePath("/posts/");
+    redirect("/posts/")
     
 }
-// export const postBBS = async () =>{
-//     // const post = await prisma.post.create({
-//     //     data:{
-//     //         username:username ,
-//     //         title:title , 
-//     //         content:content
-//     //     }
-//     // });
-//     revalidatePath("/");
-//     redirect("/")
-    
-// }

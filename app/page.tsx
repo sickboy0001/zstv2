@@ -33,7 +33,6 @@ export default async function Home() {
           locale: ja,
         })}
       </p>
-      <BbsCardList bbsAllData={bbsAllData} />
     </main>
   );
 }

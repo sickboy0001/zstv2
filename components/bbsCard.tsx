@@ -26,12 +26,10 @@ const bbsCard = ({ bbsData }: BBSDataProps) => {
           <CardTitle>{title}</CardTitle>
           <CardDescription>{username}</CardDescription>
           <CardDescription>
-            <p>
-              {formatTz(createdAt, "yyyy年MM月dd日(E) HH時mm分ss秒", {
-                timeZone: "Asia/Tokyo",
-                locale: ja,
-              })}
-            </p>
+            {formatTz(createdAt, "yyyy年MM月dd日(E) HH時mm分ss秒", {
+              timeZone: "Asia/Tokyo",
+              locale: ja,
+            })}
           </CardDescription>
         </CardHeader>
 

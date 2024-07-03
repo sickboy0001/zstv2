@@ -1,7 +1,6 @@
 import "./globals.css";
-import SupabaseListener from "@/components/supabaseListener";
 import { Metadata } from "next";
-import Header from "@/components/layouts/haader/Header";
+import Header from "@/components/layouts/header/Header";
 
 export const metadata: Metadata = {
   title: "ZeroSecondThining",
@@ -17,9 +16,6 @@ export default function RootLayout({
     <html lang="ja">
       <body>
         <Header></Header>
-        <div>
-          <SupabaseListener />
-        </div>
         <main>{children}</main>
       </body>
     </html>
