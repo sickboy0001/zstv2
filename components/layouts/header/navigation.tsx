@@ -29,7 +29,7 @@ const Navigation = ({ session }: { session: Session | null }) => {
                 className="font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
                 type="submit"
               >
-                Logout
+                ログアウト
               </button>
             </form>
           </div>

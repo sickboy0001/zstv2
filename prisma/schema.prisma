@@ -21,3 +21,25 @@ model Post {
   content   String
   createdAt DateTime @default(now())
 }
+
+model start_type {
+  id            Int          @id @default(autoincrement())
+  disp_name     String
+  title_name    String
+  name          String
+  display_order Int
+  start_post    start_post[]
+}
+
+model start_post {
+  id         Int        @id @default(autoincrement())
+  user_id    Int
+  title      String
+  content    String
+  public_flg Boolean    @default(true)
+  delete_flg Boolean    @default(false)
+  type       start_type @relation(fields: [type_id], references: [id])
+  type_id    Int
+  create_at  DateTime   @default(now())
+  update_at  DateTime   @default(now())
+}

@@ -24,3 +24,42 @@ Type error: Type 'OmitWithTag<typeof import("C:/work/dev/spa/zstwsb/app/bbs-post
   11 |   generateStaticParams?: Function
    Linting and checking validity of types  ...
 ```
+
+ShinCode 様から頂いた、MSG
+
+```
+エラーは型チェックに関するものです。
+具体的には、app/bbs-posts/create/page.tsファイルの型定義に問題があるようです。このエラーは、Zodaries の定義と、Next です。
+.js のページのコンポーネントの型定義の間に不一致がある可能性があります。
+解決策は以下の通りです。
+import { z } from 'zod'; // Zod スキーマ定義エクスポート
+
+const formSchema = z.object
+		({
+		username: z.string()
+		, title: z.string()
+		, content: z.string(),
+		}); // 型推論
+
+type FormData =
+	z.infer<typeof formSchema>; // ページ コンポーネントのエクスポート デフォルト
+
+function CreatePost()
+{
+	// ここにコンポーネント ロジックを記述
+	return
+	( // ここに JSX を記述
+	);
+} // オプションで、フォーム スキーマをエクスポートする必要がある場合は
+export { formSchema };
+このコードでは以下の修正を行います。
+
+・ZodashをformSchemaとして定義し、エクスポートしています。
+・FormData型をZodashから推論しています。
+・ページコンポーネントをdefault exportとして定義しています。
+・必要に応じてformSchemaもエクスポートしています。
+
+これらの変更により、型の不一致を解消し、Next.js のページコンポーネントと
+ZodSchema を正しく統合できるはずです。
+よろしくお願いします！
+```
