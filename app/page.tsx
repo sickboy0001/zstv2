@@ -1,4 +1,9 @@
+import StartPagePreview from "@/components/startpost/startpostpreview";
+
 export default async function Home() {
-  const date = new Date();
-  return <main></main>;
+  return (
+    <main>
+      <StartPagePreview></StartPagePreview>
+    </main>
+  );
 }

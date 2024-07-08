@@ -41,7 +41,7 @@ async function getData(): Promise<StartPost[]> {
 const PostList = async () => {
   const data = await getData();
   return (
-    <div className="container mx-auto py-10">
+    <div>
       <Link
         href={`/start-posts/new`}
         className="px-3 py-2  font-medium text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300  rounded-lg text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"

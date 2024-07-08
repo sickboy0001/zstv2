@@ -1,6 +1,6 @@
 import React from "react";
 
-const Title = () => {
+const StartTitle = () => {
   return (
     <div className="relative items-center w-full px-5 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:py-24">
       <div className="flex w-full mx-auto text-left">
@@ -20,4 +20,4 @@ const Title = () => {
   );
 };
 
-export default Title;
+export default StartTitle;

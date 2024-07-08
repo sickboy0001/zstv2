@@ -13,6 +13,16 @@ export const getStartPagePostMany = async ()=>{
     const res = await prisma.start_post.findMany()
     return res;
 }
+export const getStartPagePostManyStartPage = async ()=>{
+    const res = await prisma.start_post.findMany(
+        {
+            where:{public_flg:true}
+        ,
+            orderBy:{type_id:'asc'}
+        }
+    )
+    return res;
+}
 
 export const getStartPagePost = async (id :number)=>{
     const res = await prisma.start_post.findUnique({

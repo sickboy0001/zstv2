@@ -17,6 +17,7 @@ import React, { useState } from "react";
 import { start_post, start_type } from "@prisma/client";
 import { useFormStatus } from "react-dom";
 import { updateStartPagePost } from "@/app/actions/startPage";
+import { useRouter } from "next/navigation";
 
 type StartPageEditProps = {
   startPageTypeMany: start_type[];
@@ -27,13 +28,24 @@ const StartPageEdit: React.FC<StartPageEditProps> = ({
   startPageTypeMany,
   startPagePost,
 }) => {
+  if (!startPagePost) {
+    return <div>Loading...</div>; // 適切なローディングコンポーネント
+  }
+  const def_name = startPageTypeMany.filter(
+    (item) => startPagePost.type_id == item.id
+  )[0].name;
+
+  console.log(def_name);
+  const def_type = startPagePost.type_id;
   const [id, setId] = useState(startPagePost.id);
   const [userid, setUserId] = useState(startPagePost.user_id);
   const [title, setTitle] = useState(startPagePost.title);
   const [content, setContent] = useState(startPagePost.content);
-  const [type, setType] = useState(startPagePost.type.name);
+  const [type, setType] = useState(def_name);
   const [publicFlg, setPublicFlg] = useState(startPagePost.public_flg);
   const [deleteFlg, setDeleteFlg] = useState(startPagePost.delete_flg);
+
+  const router = useRouter();
 
   const { pending } = useFormStatus();
 
@@ -74,6 +86,7 @@ const StartPageEdit: React.FC<StartPageEditProps> = ({
         type: type,
       },
     });
+    router.push("/start-posts/list");
   }
 
   return (

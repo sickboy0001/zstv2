@@ -16,9 +16,13 @@ export default async function StartPostEdit({
   // console.log(startPageType);
 
   return (
-    <StartPageEdit
-      startPagePost={startPagePost}
-      startPageTypeMany={startPageTypeMany}
-    />
+    <>
+      {startPagePost && (
+        <StartPageEdit
+          startPagePost={startPagePost}
+          startPageTypeMany={startPageTypeMany}
+        />
+      )}
+    </>
   );
 }

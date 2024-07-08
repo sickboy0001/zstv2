@@ -1,5 +1,7 @@
 import React from "react";
-import Title from "./title";
+import StartTitle from "./startTitle";
+import { start_post } from "@prisma/client";
+import { getStartPagePostManyStartPage } from "@/app/actions/startPage";
 
 const contents = [
   {
@@ -23,23 +25,27 @@ const contents = [
   },
 ];
 
-const StartPagePreview = () => {
+async function getData(): Promise<start_post[]> {
+  const response = await getStartPagePostManyStartPage();
+  return response;
+}
+
+const StartPagePreview = async () => {
+  const data = await getData();
   return (
     <div>
-      <Title></Title>
+      <StartTitle></StartTitle>
       <section>
-        <div className=" flex flex-col items-center px-5 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="flex flex-col w-full max-w-3xl mx-auto prose text-left prose-blue">
-            <div className="w-full mx-auto">
-              {contents.map((item) => (
-                <>
-                  <h2 className="text-2xl">{item.title}</h2>
-                  <p className=" mx-auto text-base leading-relaxed text-gray-500">
-                    {item.content}
-                  </p>
-                </>
-              ))}
-            </div>
+        <div className="flex flex-col w-full max-w-3xl mx-auto prose text-left prose-blue">
+          <div className="w-full mx-auto">
+            {data.map((item, index) => (
+              <div key={index}>
+                <h2 className="text-2xl">{item.title}</h2>
+                <p className=" mx-auto text-base leading-relaxed text-gray-500">
+                  {item.content}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
         ;
