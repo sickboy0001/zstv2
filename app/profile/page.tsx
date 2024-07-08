@@ -1,32 +1,22 @@
-"use client";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import SupabaseListener from "@/components/supabaseListener";
-import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
+import { cookies } from "next/headers";
 /**
  * ログイン後のマイページ
  */
-const MyPage = () => {
-  const [userData, setUserData] = useState<User | null>(null);
-  const supabase = createClientComponentClient();
+const MyPage = async () => {
+  const supabase = createServerComponentClient({ cookies });
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
-  useEffect(() => {
-    async function getData() {
-      const { data, error } = await supabase.auth.getUser();
-      if (error) {
-        console.error("Error fetching user data:", error.message);
-      } else {
-        setUserData(data.user);
-      }
-    }
-    getData();
-  }, [supabase]);
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16 pt-20 text-center lg:pt-32">
       <h1 className="text-2xl font-bold">
         <p>
           ようこそ！
-          {userData ? userData.email : ""}
+          {session?.user.email}
         </p>
       </h1>
       <h1 className="text-2xl font-bold">ログインに成功しました</h1>

@@ -19,6 +19,19 @@ const Header = async () => {
     data: { session },
   } = await supabase.auth.getSession();
 
+  if (session) {
+    const { data: userData, error } = await supabase.auth.getUser();
+
+    if (error) {
+      console.error("Error fetching user data:", error.message);
+      return null;
+    }
+
+    // ここで user オブジェクトを使って何かを行う
+  } else {
+    console.error("Error No Session");
+  }
+
   return (
     <div className="divide-y border-gray-200 border-b">
       <div className="px-4 py-1 ">
