@@ -6,7 +6,7 @@ export interface BBSData{
     createdAt   :Date;
 }
 
-export interface StartPageType{
+export interface StartPageType  {
     id            :number
     disp_name     :string
     title_name    :string

@@ -12,7 +12,7 @@ export const postBBS = async (username:string , title:string , content:string) =
         data:{
             username:username ,
             title:title , 
-            content:content
+        content:content
         }
     });
     revalidatePath("/posts/");

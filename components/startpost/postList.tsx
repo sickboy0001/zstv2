@@ -3,7 +3,6 @@ import { DataTable } from "./dataTable";
 import { columns, StartPost } from "@/components/startpost/postListColumn";
 import Link from "next/link";
 import { getStartPagePostMany } from "@/app/actions/startPage";
-import { format, formatDistanceToNow, subDays, subSeconds } from "date-fns";
 import { ja } from "date-fns/locale/ja";
 import { format as formatTz } from "date-fns-tz";
 

@@ -1,6 +1,5 @@
 import { getStartPagePostManyStartPage } from "@/app/actions/startPage";
 import PostList from "@/components/startpost/postList";
-import { StartPost } from "@/components/startpost/postListColumn";
 import StartPagePreview from "@/components/startpost/startpostpreview";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { start_post } from "@prisma/client";
