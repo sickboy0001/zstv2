@@ -2,6 +2,8 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Navigation from "./navigation";
 
+export const dynamic = "force-dynamic";
+
 const SupabaseListener = async () => {
   const supabase = createServerComponentClient({ cookies });
 

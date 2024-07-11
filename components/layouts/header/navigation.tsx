@@ -1,16 +1,10 @@
-"use client";
 import { ModalType } from "@/components/modal/modalType";
 import ModalCore from "@/components/modalCore";
 import type { Session } from "@supabase/auth-helpers-nextjs";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
 const Navigation = ({ session }: { session: Session | null }) => {
-  const pathname = usePathname();
-  const router = useRouter();
   // console.log(session);
-  if (session === null && pathname?.includes("/profile")) {
-    router.push("/");
-  }
+
   return (
     <>
       {session ? (

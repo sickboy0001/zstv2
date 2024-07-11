@@ -1,15 +1,10 @@
 import React from "react";
-import { Card } from "@/components/ui/card";
 import { getPostsDummy } from "@/app/actions/zstPosts/posts";
-import { format as formatTz } from "date-fns-tz";
-
 import ZstPageViewGrid from "@/components/zstpost/zstPageViewGrid";
-import { ja } from "date-fns/locale/ja";
 import { GetDateFromyyyyMMdd, GetyyyyMMddJpFromDate } from "@/lib/utilsDate";
 import { addDays } from "date-fns";
-import { string } from "zod";
 
-type CardProps = React.ComponentProps<typeof Card>;
+export const dynamic = "force-dynamic";
 
 const generateDates = (today: Date, count: number) => {
   const dates = [];
@@ -21,26 +16,25 @@ const generateDates = (today: Date, count: number) => {
   return dates;
 };
 
-const getData = async ({ name }: { name: string }) => {
-  console.log(name);
-};
+interface propsType {
+  searchParams:
+    | {
+        [key: string]: string | string[] | undefined | any;
+      }
+    | any;
+}
 
-const ViewGrid = async ({
-  className,
-  searchParams,
-}: {
-  className: CardProps;
-  searchParams: { [key: string]: string | string[] | undefined };
-}) => {
+const ViewGrid = async ({ searchParams }: propsType) => {
+  console.log(searchParams);
+
   // searchParams.basedateの取得
   let paramdate = String(searchParams.basedate || "");
-  console.log("paramdate", paramdate);
+  // console.log("paramdate", paramdate);
 
   let cols = parseInt(String(searchParams.cols || ""));
   if (!cols) {
     cols = 4;
   }
-
   let rows = parseInt(String(searchParams.rows || ""));
   if (!rows) {
     rows = 3;
@@ -59,9 +53,9 @@ const ViewGrid = async ({
 
   // 文字列→Date型
   const basedate = GetDateFromyyyyMMdd(paramdate);
-  console.log("basedate", basedate.toLocaleDateString());
+  // console.log("basedate", basedate.toLocaleDateString());
   const generateDatesbase = addDays(basedate, -datecount + 2);
-  console.log("generateDatesbase", generateDatesbase.toLocaleDateString());
+  // console.log("generateDatesbase", generateDatesbase.toLocaleDateString());
 
   const dates = generateDates(generateDatesbase, rows * cols);
   const zstPosts = await getPostsDummy();

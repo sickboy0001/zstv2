@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { ModalType } from "./modal/modalType";
 import SignUpForm from "./modal/signupForm";

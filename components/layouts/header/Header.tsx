@@ -14,20 +14,15 @@ import {
 
 const Header = async () => {
   const supabase = createServerComponentClient({ cookies });
-
   const {
     data: { session },
   } = await supabase.auth.getSession();
-
   if (session) {
-    const { data: userData, error } = await supabase.auth.getUser();
-
-    if (error) {
-      console.error("Error fetching user data:", error.message);
-      return null;
-    }
-
-    // ここで user オブジェクトを使って何かを行う
+    // const { data: userData, error } = await supabase.auth.getUser();
+    // if (error) {
+    //   console.error("Error fetching user data:", error.message);
+    //   return null;
+    // }
   } else {
     console.error("Error No Session");
   }
